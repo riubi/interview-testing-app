@@ -20,35 +20,19 @@ class Testing implements JsonSerializable
         $this->questions = $questions;
     }
 
-    public function evaluate(Answers $answers, ExpressionComparator $comparator, ResultRepository $resultRepository): TestingResult
+    public function evaluate(array $selectedOptions, ExpressionComparator $comparator, ResultRepository $resultRepository): TestingResult
     {
-        $result = $this
-            ->getCorrectAnswers($comparator)
-            ->compare($answers);
+        $result = AnswersEvaluator::createByQuestionsEval($this->questions, $comparator)
+            ->compare($selectedOptions);
 
         $resultRepository->save($result);
 
         return $result;
     }
 
-    private function getCorrectAnswers(ExpressionComparator $comparator): Answers
-    {
-        $correctAnswers = [];
-        foreach ($this->questions as $question) {
-            $questionExpression = $question->getExpression();
-            foreach ($question->getOptions() as $option) {
-                if ($comparator->isEqual($questionExpression, $option->getExpression())) {
-                    $correctAnswers[] = $option->getOptionId();
-                }
-            }
-        }
-
-        return new Answers($correctAnswers);
-    }
-
     public function randomize(): void
     {
-        foreach($this->questions as $question) {
+        foreach ($this->questions as $question) {
             $question->randomize();
         }
 

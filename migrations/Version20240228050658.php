@@ -29,7 +29,7 @@ final class Version20240228050658 extends AbstractMigration
 
         $this->addSql("INSERT INTO options (question_id, expression) VALUES (2, '4');");
         $this->addSql("INSERT INTO options (question_id, expression) VALUES (2, '3 + 1');");
-        $this->addSql("INSERT INTO options (question_id, expression) VALUES (2, '10 - 6');");
+        $this->addSql("INSERT INTO options (question_id, expression) VALUES (2, '11 - 6');");
         $this->addSql("INSERT INTO options (question_id, expression) VALUES (2, '4');");
 
         $this->addSql("INSERT INTO options (question_id, expression) VALUES (3, '3 + 1 - 4');");

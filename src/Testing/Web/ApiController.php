@@ -3,7 +3,6 @@
 namespace App\Testing\Web;
 
 use App\Evaluator\Contract\ExpressionComparator;
-use App\Testing\Domain\Answers;
 use App\Testing\Domain\ResultRepository;
 use App\Testing\Domain\TestingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,12 +29,11 @@ class ApiController extends AbstractController
     {
 
         $data = json_decode($request->getContent(), true);
-        $answer = new Answers($data['answers'] ?? []);
-        $questionRepository
-            ->getTest()
-            ->evaluate($answer, $comparator, $resultRepository);
+        $selectedOptions = $data['selectedOptions'] ?? [];
 
-        $result = $resultRepository->getStats();
+        $result = $questionRepository
+            ->getTest()
+            ->evaluate($selectedOptions, $comparator, $resultRepository);
 
         return $this->json($result);
     }
