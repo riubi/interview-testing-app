@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Symfony\Component\ExpressionLanguage\ExpressionLanguage: ~
+  App\Evaluator\Contract\ExpressionComparator:
+    class: App\Evaluator\Domain\ExpressionComparatorImpl

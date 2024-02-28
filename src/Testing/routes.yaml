@@ -1,0 +1,5 @@
+controllers:
+    resource:
+        path: ./Web/
+        namespace: App\Testing\Web
+    type: attribute

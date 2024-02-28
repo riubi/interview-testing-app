@@ -12,4 +12,8 @@ COPY . /var/www
 
 RUN composer install
 
+COPY docker/entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
 CMD ["php-fpm"]

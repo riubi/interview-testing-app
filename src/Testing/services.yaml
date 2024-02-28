@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Testing\Domain\TestingRepository:
+    class: App\Testing\Infrastructure\TestingRepositoryImpl
+  App\Testing\Domain\ResultRepository:
+    class: App\Testing\Infrastructure\ResultRepositoryImpl
+  App\Testing\Web\ApiController:
+    tags: [ controller.service_arguments ]

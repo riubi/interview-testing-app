@@ -1,0 +1,8 @@
+doctrine:
+  orm:
+    mappings:
+      Testing:
+        is_bundle: false
+        type: attribute
+        dir: '%kernel.project_dir%/src/Testing/Infrastructure'
+        prefix: 'App\Testing\Infrastructure'
