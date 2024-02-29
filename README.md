@@ -33,4 +33,5 @@ To get the application up and running, follow these steps:
 1. Clone the repository from GitHub.
 2. Make sure, that's port 8080 has not been used.
 3. Run `docker-compose up --build`.
-4. Open http://localhost:8080/.
+4. Run migrations `docker-compose exec testing_app php /var/www/bin/console doctrine:migrations:migrate --no-interaction`
+5. Open http://localhost:8080/.

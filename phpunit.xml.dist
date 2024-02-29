@@ -6,7 +6,6 @@
          backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
-         convertDeprecationsToExceptions="false"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -22,10 +21,6 @@
             <directory>./src/*/Tests</directory>
         </testsuite>
     </testsuites>
-
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-    </listeners>
 
     <extensions>
     </extensions>

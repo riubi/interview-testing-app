@@ -1,24 +1,18 @@
 version: '3.8'
 services:
-  php:
+  testing_app:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    depends_on:
-      - database
-
-  nginx:
-    image: nginx:latest
     ports:
       - "8080:80"
     volumes:
       - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./public/spa:/var/www/public
     depends_on:
-      - php
+      - testing_app_db
 
 ###> doctrine/doctrine-bundle ###
-  database:
+  testing_app_db:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
@@ -26,12 +20,12 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
       POSTGRES_USER: ${POSTGRES_USER:-app}
     volumes:
-      - database_data:/var/lib/postgresql/data:rw
+      - testing_app_db_data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
 
 volumes:
 ###> doctrine/doctrine-bundle ###
-  database_data:
+  testing_app_db_data:
 ###< doctrine/doctrine-bundle ###
